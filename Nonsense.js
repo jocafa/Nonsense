@@ -1,6 +1,6 @@
 (function () {
 	function LFSR (state, taps) {
-		this.state = state || 0x71234567;
+		this.state = state || 0x71a2b3c4
 		this.taps  = taps  || 0x48000000;
 	}
 
@@ -228,7 +228,7 @@
 	//////////////////////////////////////////////////////////////[ Dates ]////
 	Nonsense.prototype.date = function () {
 		// 2000 - 2020
-		return new Date(946684800000 + (this.frac() * 631138519494)); 
+		return 946684800000 + (this.frac() * 631138519494); 
 	};
 
 	/////////////////////////////////////////////////////////////[ People ]////
