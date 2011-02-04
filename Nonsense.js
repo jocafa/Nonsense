@@ -159,7 +159,7 @@
 	Nonsense.prototype.integerInRange = function (min, max) {
 		min = min || 0;
 		max = max || 100;
-		return Math.floor(this.realInRange());
+		return Math.floor(this.realInRange(min, max));
 	};
 
 	Nonsense.prototype.realInRange = function (min, max) {
