@@ -173,13 +173,11 @@
 	};
 
 	Nonsense.prototype.guid = function () {
-		return (
-			this.integer().toString(16) +
-			this.integer().toString(16) +
-			this.integer().toString(16) +
-			this.integer().toString(16) +
-			'00000000000000000000000000000000'
-		).substr(0, 32);
+		var self = this;
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = self.integerInRange(0, 16), v = c == 'x' ? r : (r&0x3|0x8);
+			return v.toString(16);
+		});
 	};
 
 	/////////////////////////////////////////////////////////////[ Arrays ]////
