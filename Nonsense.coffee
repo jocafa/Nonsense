@@ -1,10 +1,13 @@
 class LFSR
 	constructor: (@seed=0x71a2b3c4, @taps=0x48000000) ->
+		@state = @seed
+
 
 	shift: ->
 		lsb = @state & 0x1
-		@state >>>= 1
-		@state ^= @taps if lsb
+		@state >>= 1
+		@state ^= @taps if lsb == 1
+		@state &= 0x7fffffff
 		@state
 
 
@@ -210,10 +213,3 @@ DATA =
 			"synthesize", "target", "transform", "transition", "unleash",
 			"utilize", "visualize", "whiteboard"
 		]
-
-ns = new Nonsense
-console.log(ns.pick(DATA.lipsum))
-console.log(ns.words())
-console.log(ns.words(10))
-console.log(ns.sentences(10))
-console.log(ns.timestamp())
