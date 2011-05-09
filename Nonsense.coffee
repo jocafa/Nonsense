@@ -1,7 +1,5 @@
 class LFSR
-	constructor: (seed, taps) ->
-		@state = seed ? 0x71a2b3c4
-		@taps = taps ? 0x48000000
+	constructor: (@seed=0x71a2b3c4, @taps=0x48000000) ->
 
 	shift: ->
 		lsb = @state & 0x1
@@ -30,9 +28,7 @@ class Nonsense
 	integerInRange: (min, max) ->
 		Math.floor(@realInRange(min, max))
 
-	realInRange: (min, max) ->
-		min ?= 0
-		max ?= 100
+	realInRange: (min=0, max=100) ->
 		@frac() * (max - min) + min
 
 	normal: ->
@@ -81,6 +77,25 @@ class Nonsense
 	timestamp: ->
 		# 2000 - 2020
 		946684800000 + ~~(@frac() * 631138519494)
+
+	#------------------------------------------------------------[ People ]----
+	firstName: ->
+		"#{@pick(DATA.names.first)}"
+
+	lastName: ->
+		"#{@pick(DATA.names.last)}"
+
+	name: ->
+		"#{@firstName()} #{@lastName()}"
+
+	fancyName: ->
+		"#{@name()} #{@pick(DATA.names.suffixes)}"
+
+	jobTitle: ->
+		"#{@pick(DATA.departments)} #{@pick(DATA.positions)}"
+
+	buzzPhrase: ->
+		"#{@pick(DATA.buzz.verbs)} #{@pick(DATA.buzz.adjectives)} #{@pick(DATA.buzz.nouns)}"
 
 DATA =
 	lipsum: [

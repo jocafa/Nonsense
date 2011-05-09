@@ -97,8 +97,34 @@ class Nonsense
     ret.join(' ')
   end
 
+	#-------------------------------------------------------------[ Dates ]----
   def timestamp
     (946684800000 + (frac * 631138519494).floor)/1000
+  end
+
+	#------------------------------------------------------------[ People ]----
+  def firstName
+		"#{pick(DATA[:names][:first])}"
+  end
+
+  def lastName
+		"#{pick(DATA[:names][:last])}"
+  end
+
+  def name
+    "#{firstName} #{lastName}"
+  end
+
+  def fancyName
+    "#{name} #{pick(DATA[:names][:suffixes])}"
+  end
+
+  def jobTitle
+		"#{pick(DATA[:departments])} #{pick(DATA[:positions])}"
+  end
+
+  def buzzPhrase
+		"#{pick(DATA[:buzz][:verbs])} #{pick(DATA[:buzz][:adjectives])} #{pick(DATA[:buzz][:nouns])}"
   end
 
   DATA = {
