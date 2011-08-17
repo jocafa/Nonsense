@@ -1,5 +1,5 @@
 (function() {
-  var DATA, LFSR, Nonsense;
+  var DATA, LFSR, Nonsense, _ref;
   LFSR = (function() {
     function LFSR(seed, taps) {
       this.seed = seed != null ? seed : 0x71a2b3c4;
@@ -75,7 +75,7 @@
     Nonsense.prototype.words = function(num) {
       var ret, x, _ref;
       ret = [];
-      for (x = 0, _ref = num != null ? num : num = 5; (0 <= _ref ? x <= _ref : x >= _ref); (0 <= _ref ? x += 1 : x -= 1)) {
+      for (x = 0, _ref = num != null ? num : num = 5; 0 <= _ref ? x <= _ref : x >= _ref; 0 <= _ref ? x++ : x--) {
         ret.push(this.pick(DATA.lipsum));
       }
       return ret.join(' ');
@@ -90,7 +90,7 @@
     Nonsense.prototype.sentences = function(num) {
       var ret, x, _ref;
       ret = [];
-      for (x = 0, _ref = num != null ? num : num = 5; (0 <= _ref ? x <= _ref : x >= _ref); (0 <= _ref ? x += 1 : x -= 1)) {
+      for (x = 0, _ref = num != null ? num : num = 5; 0 <= _ref ? x <= _ref : x >= _ref; 0 <= _ref ? x++ : x--) {
         ret.push(this.sentence());
       }
       return ret.join(' ');
@@ -135,5 +135,5 @@
       verbs: ["aggregate", "architect", "benchmark", "brand", "cultivate", "deliver", "deploy", "disintermediate", "drive", "e-enable", "embrace", "empower", "enable", "engage", "engineer", "enhance", "envisioneer", "evolve", "expedite", "exploit", "extend", "facilitate", "generate", "grow", "harness", "implement", "incentivize", "incubate", "innovate", "integrate", "iterate", "leverage", "matrix", "maximize", "mesh", "monetize", "morph", "optimize", "orchestrate", "productize", "recontextualize", "redefine", "reintermediate", "reinvent", "repurpose", "revolutionize", "scale", "seize", "strategize", "streamline", "syndicate", "synergize", "synthesize", "target", "transform", "transition", "unleash", "utilize", "visualize", "whiteboard"]
     }
   };
-  this.Nonsense = Nonsense;
+  ((_ref = typeof module !== "undefined" && module !== null ? module.exports : void 0) != null ? _ref : this).Nonsense = Nonsense;
 }).call(this);

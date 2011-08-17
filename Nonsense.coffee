@@ -214,4 +214,4 @@ DATA =
 			"utilize", "visualize", "whiteboard"
 		]
 
-this.Nonsense = Nonsense;
+(module?.exports ? this).Nonsense = Nonsense;

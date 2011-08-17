@@ -1,5 +1,9 @@
 {
 	"name": "Nonsense",
-	"version": "0.1",
-	"main": "./Nonsense"
+	"version": "0.1.0",
+	"author": "Josh Faul <josh.faul@gmail.com>",
+	"main": "./Nonsense",
+	"description": "Create repeatable random information",
+	"repository": "git://github.com/jocafa/Nonsense",
+	"main": "Nonsense.js"
 }
