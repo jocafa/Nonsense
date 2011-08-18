@@ -96,7 +96,7 @@
       return ret.join(' ');
     };
     Nonsense.prototype.timestamp = function() {
-      return 946684800000 + ~~(this.frac() * 631138519494);
+      return this.realInRange(946684800000, 1577862000000);
     };
     Nonsense.prototype.firstName = function() {
       return "" + (this.pick(DATA.names.first));
