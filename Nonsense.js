@@ -23,7 +23,7 @@
       this.lfsr = new LFSR(seed);
     }
     Nonsense.prototype.seed = function(seed) {
-      return this.state = seed;
+      return this.lfsr.state = seed;
     };
     Nonsense.prototype.integer = function() {
       return this.lfsr.shift();

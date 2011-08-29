@@ -16,7 +16,7 @@ class Nonsense
 		@lfsr = new LFSR(seed)
 
 	seed: (seed) ->
-		@state = seed
+		@lfsr.state = seed
 
 	#-----------------------------------------------------------[ Numbers ]----
 	integer: ->
