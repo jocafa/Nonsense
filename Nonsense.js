@@ -245,11 +245,13 @@
 		}
 	};
 
-	if (typeof define == 'function') {
+	if (typeof module !== 'undefined') {
+		module.exports = Nonsense;
+	} else if (typeof define == 'function') {
 		define(function () {
 			return Nonsense;
 		});
 	} else {
-		((_ref = typeof module !== "undefined" && module !== null ? module.exports : void 0) != null ? _ref : this).Nonsense = Nonsense;
+		this.Nonsense = Nonsense;
 	}
 }).call(this);
