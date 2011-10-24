@@ -189,7 +189,7 @@ DATA =
 			"enterprise", "extensible", "frictionless", "front-end",
 			"global", "granular", "holistic", "impactful", "innovative",
 			"integrated", "interactive", "intuitive", "killer",
-			"leading-edge", "magnetic", "mission-critical",
+			"leading-edge", "magnetic", "mission-critical", "multiplatform"
 			"next-generation", "one-to-one", "open-source",
 			"out-of-the-box", "plug-and-play", "proactive", "real-time",
 			"revolutionary", "rich", "robust", "scalable", "seamless",
