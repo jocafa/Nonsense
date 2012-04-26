@@ -1,4 +1,5 @@
 (function() {
+	// random number generator from http://baagoe.org/en/wiki/Better_random_numbers_for_javascript
 	var DATA;
 
 	function hash (data) {
