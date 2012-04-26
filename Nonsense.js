@@ -1,41 +1,83 @@
 (function() {
-	function LFSR(seed, taps) {
-		this.seed = seed || 0x71a2b3c4;
-		this.taps = taps || 0x48000000;
-		this.state = this.seed;
-	}
+	var DATA;
 
-	LFSR.prototype.shift = function() {
-		var lsb = this.state & 0x1;
+	function hash (data) {
+		var h, i, n;
 
-		this.state >>= 1;
+		n = 0xefc8249d;
 
-		if (lsb === 1) {
-			this.state ^= this.taps;
+		data = data.toString();
+
+		for (i = 0; i < data.length; i++) {
+			n += data.charCodeAt(i);
+			h = 0.02519603282416938 * n;
+			n = h >>> 0;
+			h -= n;
+			h *= n;
+			n = h >>> 0;
+			h -= n;
+			n += h * 0x100000000; // 2^32
 		}
 
-		this.state &= 0x7fffffff;
-		return this.state;
-	};
-
-	function Nonsense(seed) {
-		this.lfsr = new LFSR(seed);
+		return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
 	}
 
-	Nonsense.prototype.seed = function(seed) {
-		return this.lfsr.state = seed;
+	// private random helper
+	function rnd () {
+		var t = 2091639 * this.s0 + this.c * 2.3283064365386963e-10; // 2^-32
+
+		this.c = t | 0;
+		this.s0 = this.s1;
+		this.s1 = this.s2;
+		this.s2 = t - this.c;
+		return this.s2;
+	}
+
+	function Nonsense () {
+		this.sow.apply(this, arguments);
+	}
+
+	Nonsense.prototype.sow = function () {
+		var i, seeds, seed;
+
+		this.s0 = hash(' ');
+		this.s1 = hash(this.s0);
+		this.s2 = hash(this.s1);
+		this.c = 1;
+
+		seeds = Array.prototype.slice.call(arguments);
+
+		for (i = 0; seed = seeds[i++];) {
+			this.s0 -= hash(seed);
+			this.s0 += ~~(this.s0 < 0);
+
+			this.s1 -= hash(seed);
+			this.s1 += ~~(this.s1 < 0);
+
+			this.s2 -= hash(seed);
+			this.s2 += ~~(this.s2 < 0);
+		}
+	};
+
+
+	Nonsense.prototype.uint32 = function () {
+		return rnd.apply(this) * 0x100000000; // 2^32
+	};
+
+	Nonsense.prototype.fract32 = function () {
+		return rnd.apply(this) + (rnd.apply(this) * 0x200000 | 0) * 1.1102230246251565e-16; // 2^-53
 	};
 
 	Nonsense.prototype.integer = function() {
-		return this.lfsr.shift();
+		return this.uint32();
 	};
 
 	Nonsense.prototype.frac = function() {
-		return this.lfsr.shift() / 0x7fffffff;
+		return this.fract32();
 	};
 
 	Nonsense.prototype.real = function() {
-		return this.lfsr.shift() + this.frac();
+		return this.uint32() + this.fract32();
 	};
 
 	Nonsense.prototype.integerInRange = function(min, max) {
@@ -43,12 +85,8 @@
 	};
 
 	Nonsense.prototype.realInRange = function(min, max) {
-		if (min == null) {
-			min = 0;
-		}
-		if (max == null) {
-			max = 100;
-		}
+		min = min || 0;
+		max = max || 0;
 		return this.frac() * (max - min) + min;
 	};
 
