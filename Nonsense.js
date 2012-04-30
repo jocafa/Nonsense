@@ -111,7 +111,7 @@
 	};
 
 	Nonsense.prototype.weightedPick = function(ary) {
-		return ary[~~Math.pow(this.frac(), 2) * ary.length];
+		return ary[~~(Math.pow(this.frac(), 2) * ary.length)];
 	};
 
 	Nonsense.prototype.word = function() {
