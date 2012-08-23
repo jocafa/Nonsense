@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jocafa/Nonsense.png)](http://travis-ci.org/jocafa/Nonsense)
 Nonsense
 ========
 
