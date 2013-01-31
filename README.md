@@ -6,6 +6,25 @@ Generate repeatable random data in JS
 Inspired by [Faker.js](http://github.com/Marak/Faker.js)
 Uses slightly modified [Alea PRNG](http://baagoe.org/en/wiki/Alea)
 
+## Getting started
+
+For the server, install Nonsense via [npm][npm].
+```shell
+npm install Nonsense
+```
+
+For the browser, download [Nonsense.js][nonsense.js], and include it as a script tag.
+
+```html
+<script src="Nonsense.js"></script>
+<script>
+  var ns = new Nonsense();
+  ns.integer(); // Random integer between 0 and 2^32
+</script>
+```
+
+[npm]: https://npmjs.org/
+[nonsense.js]: https://raw.github.com/jocafa/Nonsense/master/Nonsense.js
 
 ## Usage
 
