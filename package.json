@@ -1,6 +1,6 @@
 {
 	"name": "Nonsense",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"author": "Josh Faul <josh.faul@gmail.com>",
 	"main": "./Nonsense",
 	"description": "Create repeatable random information",
