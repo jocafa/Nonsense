@@ -64,4 +64,4 @@ If you want to reset the seed of an instance you already have, call `ns.sow()` a
 License
 -------
 
-Do whatever you want with this code. The consequenses of your actions are your own responsibility.
+[WTFPL](http://www.wtfpl.net/) - Do whatever you want with this code. The consequenses of your actions are your own responsibility.
