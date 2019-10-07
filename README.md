@@ -49,6 +49,8 @@ If you want to reset the seed of an instance you already have, call `ns.sow()` a
   - `timestamp(min, max)` - returns a random timestamp between min and max, or between the beginning of 2000 and the end of 2020 if min and max aren't specified
 
 ### Language
+  - `letter()` - returns a random upper case letter from the alphabet
+  - `letters(n)` - returns `n` random upper case letters, 3 if not specified
   - `word()` - returns a random word of lipsum
   - `words(n)` - returns `n` random words of lipsum, 3 if not specified
   - `sentence()` - returns a random lipsum sentence
