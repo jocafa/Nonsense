@@ -47,6 +47,7 @@ If you want to reset the seed of an instance you already have, call `ns.sow()` a
   - `pick(array)` - returns a random member of `array`
   - `weightedPick(array)` - returns a random member of `array`, favoring the earlier entries
   - `timestamp(min, max)` - returns a random timestamp between min and max, or between the beginning of 2000 and the end of 2020 if min and max aren't specified
+  - `bool()` - returns a random bool value
 
 ### Language
   - `word()` - returns a random word of lipsum
@@ -58,6 +59,7 @@ If you want to reset the seed of an instance you already have, call `ns.sow()` a
   - `firstName()` - returns a random common first name
   - `lastName()` - returns a random common last name
   - `name()` - returns a random first and last name
+  - `gender()` - returns a either 'male' or 'female'
   - `jobTitle()` - returns a random job title
   - `buzzPhrase()` - returns a random web 2.0 business plan... 
 
