@@ -50,6 +50,8 @@ If you want to reset the seed of an instance you already have, call `ns.sow()` a
   - `bool()` - returns a random bool value
 
 ### Language
+  - `letter()` - returns a random upper case letter from the alphabet
+  - `letters(n)` - returns `n` random upper case letters, 3 if not specified
   - `word()` - returns a random word of lipsum
   - `words(n)` - returns `n` random words of lipsum, 3 if not specified
   - `sentence()` - returns a random lipsum sentence

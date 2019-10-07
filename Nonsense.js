@@ -1,8 +1,8 @@
-(function() {
+(function () {
   // random number generator from http://baagoe.org/en/wiki/Better_random_numbers_for_javascript
   var DATA;
 
-  function hash (data) {
+  function hash(data) {
     var h, i, n;
 
     n = 0xefc8249d;
@@ -24,7 +24,7 @@
   }
 
   // private random helper
-  function rnd () {
+  function rnd() {
     var t = 2091639 * this.s0 + this.c * 2.3283064365386963e-10; // 2^-32
 
     this.c = t | 0;
@@ -34,7 +34,7 @@
     return this.s2;
   }
 
-  function Nonsense () {
+  function Nonsense() {
     this.sow.apply(this, arguments);
   }
 
@@ -73,57 +73,70 @@
     return this.uint32() & 0x1 ? true : false;
   };
 
-  Nonsense.prototype.integer = function() {
+  Nonsense.prototype.integer = function () {
     return this.uint32();
   };
 
-  Nonsense.prototype.frac = function() {
+  Nonsense.prototype.frac = function () {
     return this.fract32();
   };
 
-  Nonsense.prototype.real = function() {
+  Nonsense.prototype.real = function () {
     return this.uint32() + this.fract32();
   };
 
-  Nonsense.prototype.integerInRange = function(min, max) {
+  Nonsense.prototype.integerInRange = function (min, max) {
     return Math.floor(this.realInRange(min, max));
   };
 
-  Nonsense.prototype.realInRange = function(min, max) {
+  Nonsense.prototype.realInRange = function (min, max) {
     min = min || 0;
     max = max || 0;
     return this.frac() * (max - min) + min;
   };
 
-  Nonsense.prototype.normal = function() {
+  Nonsense.prototype.normal = function () {
     return 1 - 2 * this.frac();
   };
 
-  Nonsense.prototype.uuid = function() {
+  Nonsense.prototype.uuid = function () {
     // from https://gist.github.com/1308368
     var a, b;
     for (
-      b=a='';
-      a++<36;
-      b+=~a%5|a*3&4?(a^15?8^this.frac()*(a^20?16:4):4).toString(16):'-'
+      b = a = '';
+      a++ < 36;
+      b += ~a % 5 | a * 3 & 4 ? (a ^ 15 ? 8 ^ this.frac() * (a ^ 20 ? 16 : 4) : 4).toString(16) : '-'
     );
     return b;
   };
 
-  Nonsense.prototype.pick = function(ary) {
+  Nonsense.prototype.pick = function (ary) {
     return ary[this.integerInRange(0, ary.length)];
   };
 
-  Nonsense.prototype.weightedPick = function(ary) {
+  Nonsense.prototype.weightedPick = function (ary) {
     return ary[~~(Math.pow(this.frac(), 2) * ary.length)];
   };
 
   // Language  ----------------------------------------------------------------
-  Nonsense.prototype.word = function() {
+  Nonsense.prototype.letter = function () {
+    return this.pick(DATA.letters);
+  };
+
+  Nonsense.prototype.letters = function (num) {
+    num = num || 3;
+    var ret = [];
+    for (var i = 0; i < num; i++) {
+      ret.push(this.pick(DATA.letters));
+    }
+    return ret.join(' ');
+  };
+
+  Nonsense.prototype.word = function () {
     return this.pick(DATA.lipsum);
   };
 
-  Nonsense.prototype.words = function(num) {
+  Nonsense.prototype.words = function (num) {
     num = num || 3;
     var ret = [];
     for (var i = 0; i < num; i++) {
@@ -132,15 +145,15 @@
     return ret.join(' ');
   };
 
-  Nonsense.prototype.sentence = function() {
+  Nonsense.prototype.sentence = function () {
     var ret;
-    ret = this.words(this.integerInRange(2, 16)).replace(/[a-z]/, function(m) {
+    ret = this.words(this.integerInRange(2, 16)).replace(/[a-z]/, function (m) {
       return m.toUpperCase();
     });
     return ret + '.';
   };
 
-  Nonsense.prototype.sentences = function(num) {
+  Nonsense.prototype.sentences = function (num) {
     num = num || 3;
     var ret = [];
     for (var i = 0; i < num; i++) {
@@ -150,7 +163,7 @@
   };
 
   // Time  --------------------------------------------------------------------
-  Nonsense.prototype.timestamp = function(a, b) {
+  Nonsense.prototype.timestamp = function (a, b) {
     return this.realInRange(a || 946684800000, b || 1577862000000);
   };
 
@@ -159,29 +172,33 @@
     return this.bool() ? 'male' : 'female';
   };
 
-  Nonsense.prototype.firstName = function(gender) {
+  Nonsense.prototype.firstName = function (gender) {
     gender = gender || this.gender();
     return "" + (this.pick(DATA.names.first[gender]));
   };
 
-  Nonsense.prototype.lastName = function() {
+  Nonsense.prototype.lastName = function () {
     return "" + (this.pick(DATA.names.last));
   };
 
-  Nonsense.prototype.name = function(gender) {
+  Nonsense.prototype.name = function (gender) {
     return "" + (this.firstName(gender)) + " " + (this.lastName());
   };
 
-  Nonsense.prototype.jobTitle = function() {
+  Nonsense.prototype.jobTitle = function () {
     return "" + (this.pick(DATA.departments)) + " " + (this.pick(DATA.positions));
   };
 
-  Nonsense.prototype.buzzPhrase = function() {
+  Nonsense.prototype.buzzPhrase = function () {
     return "" + (this.pick(DATA.buzz.verbs)) + " " + (this.pick(DATA.buzz.adjectives)) + " " + (this.pick(DATA.buzz.nouns));
   };
 
   // Dataset  -----------------------------------------------------------------
   DATA = {
+    letters: [
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+      "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    ],
     lipsum: [
       "lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
       "adipiscing", "elit", "nunc", "sagittis", "tortor", "ac", "mi",
